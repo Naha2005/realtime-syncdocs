@@ -1,0 +1,15 @@
+{
+  "name": "collabdocs-root",
+  "version": "1.0.0",
+  "description": "CollabDocs Workspace Bootstrapper",
+  "type": "module",
+  "scripts": {
+    "postinstall": "npm install --prefix server && npm install --prefix client",
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently --kill-others \"npm run dev --prefix server\" \"npm run dev --prefix client\""
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

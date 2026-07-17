@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans antialiased selection:bg-primary-500/30;
+  }
+}
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-darkBorder rounded-full hover:bg-gray-400 dark:hover:bg-primary-700 transition-colors;
+}
+
+/* Custom Premium Animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px 2px rgba(14, 165, 233, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 25px 5px rgba(14, 165, 233, 0.7);
+  }
+}
+
+.glow-active {
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  @apply bg-white/70 dark:bg-darkCard/70 backdrop-blur-md border border-white/20 dark:border-darkBorder/40;
+}
+
+/* Markdown Rendering Container Styles */
+.markdown-preview {
+  @apply text-gray-800 dark:text-gray-200 leading-relaxed;
+}
+.markdown-preview h1 {
+  @apply text-3xl font-extrabold border-b border-gray-200 dark:border-darkBorder pb-2 mb-4 mt-6 text-gray-900 dark:text-white;
+}
+.markdown-preview h2 {
+  @apply text-2xl font-bold border-b border-gray-100 dark:border-darkBorder/50 pb-1 mb-3 mt-5 text-gray-800 dark:text-gray-100;
+}
+.markdown-preview h3 {
+  @apply text-xl font-semibold mb-2 mt-4 text-gray-800 dark:text-gray-200;
+}
+.markdown-preview p {
+  @apply mb-4 text-base;
+}
+.markdown-preview ul {
+  @apply list-disc list-inside mb-4 pl-4 space-y-1;
+}
+.markdown-preview ol {
+  @apply list-decimal list-inside mb-4 pl-4 space-y-1;
+}
+.markdown-preview blockquote {
+  @apply border-l-4 border-primary-500 pl-4 py-1 my-4 italic bg-gray-50 dark:bg-darkCard/50 text-gray-600 dark:text-gray-400 rounded-r-md;
+}
+.markdown-preview code {
+  @apply bg-gray-100 dark:bg-darkCard/80 text-primary-600 dark:text-primary-400 px-1.5 py-0.5 rounded font-mono text-sm;
+}
+.markdown-preview pre {
+  @apply bg-gray-900 text-gray-100 p-4 rounded-xl font-mono text-sm overflow-x-auto mb-4 border border-gray-800 shadow-lg;
+}
+.markdown-preview pre code {
+  @apply bg-transparent text-gray-100 p-0 rounded-none font-mono;
+}
+.markdown-preview table {
+  @apply min-w-full divide-y divide-gray-200 dark:divide-darkBorder mb-4 border border-gray-200 dark:border-darkBorder rounded-lg overflow-hidden;
+}
+.markdown-preview th {
+  @apply bg-gray-50 dark:bg-darkCard/60 px-4 py-2 text-left text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300;
+}
+.markdown-preview td {
+  @apply px-4 py-2 border-t border-gray-200 dark:border-darkBorder text-sm;
+}
+.markdown-preview a {
+  @apply text-primary-500 hover:text-primary-600 underline font-medium;
+}
+.markdown-preview img {
+  @apply rounded-xl max-w-full h-auto shadow-md mx-auto my-6 border border-gray-200 dark:border-darkBorder;
+}
+.markdown-preview hr {
+  @apply my-6 border-gray-200 dark:border-darkBorder;
+}
+
+/* Typing indicator dot bounce */
+.typing-dots span {
+  width: 6px;
+  height: 6px;
+  background-color: currentColor;
+  border-radius: 50%;
+  display: inline-block;
+  animation: typing-bounce 1.4s infinite ease-in-out both;
+}
+.typing-dots span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+.typing-dots span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+@keyframes typing-bounce {
+  0%, 80%, 100% { 
+    transform: scale(0);
+  } 40% { 
+    transform: scale(1.0);
+  }
+}
