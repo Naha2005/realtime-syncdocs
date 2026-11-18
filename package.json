@@ -2,6 +2,7 @@
   "name": "collabdocs-root",
   "version": "1.0.0",
   "description": "CollabDocs Workspace Bootstrapper",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "postinstall": "npm install --prefix server && npm install --prefix client",
