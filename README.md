@@ -219,4 +219,16 @@ npm run dev
 
 ## 📜 License
 
-This project is licensed under the **MIT License**. Feel free to use, modify, and distribute for personal or commercial projects.
+Distributed under the **MIT License**. See [`LICENSE`](./LICENSE) for more details.
+
+```text
+Copyright (c) 2026 Naha2005
+
+Permission is granted to use, copy, modify, merge, publish, distribute, 
+sublicense, and/or sell copies of the software with attribution.
+```
+
+- ✅ **Commercial Use** — Permitted
+- ✅ **Modification** — Permitted
+- ✅ **Distribution** — Permitted
+- ✅ **Private Use** — Permitted
