@@ -1,221 +1,162 @@
-# CollabDocs - Real-Time Collaborative Document Editor
+<div align="center">
 
-[![Frontend Deploy](https://img.shields.io/badge/Frontend-Netlify-00C7B7?logo=netlify&logoColor=white)](https://realtime-syncdocs.netlify.app)
-[![Backend Deploy](https://img.shields.io/badge/Backend-Render-46E3B7?logo=render&logoColor=white)](https://realtime-syncdocs.onrender.com/health)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+# 📝 CollabDocs
+### Next-Gen Real-Time Collaborative Document Workspace
 
-CollabDocs is a production-ready, full-stack collaborative Markdown document editor inspired by Google Docs and Notion. It supports instant real-time multi-user editing via WebSockets (Socket.IO), live cursor & typing awareness, role-based sharing permissions, Markdown preview, version checkpoints, and one-click rollback operations.
+*Empower teams with Google Docs & Notion-inspired real-time editing, Markdown rendering, instant synchronization, and role-based access.*
 
 ---
 
-## 🌐 Live Application Links
+[![Frontend Deploy](https://img.shields.io/badge/Frontend-Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://realtime-syncdocs.netlify.app)
+[![Backend Deploy](https://img.shields.io/badge/Backend-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://realtime-syncdocs.onrender.com/health)
+[![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![React](https://img.shields.io/badge/React-19.0-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![Socket.IO](https://img.shields.io/badge/Socket.IO-4.8-010101?style=for-the-badge&logo=socketdotio&logoColor=white)](https://socket.io/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-| Component | Platform | Live URL | Status |
+</div>
+
+---
+
+## 🌟 Live Demo & Deployments
+
+| Component | Cloud Host | Live URL | Health Status |
 | :--- | :--- | :--- | :--- |
-| **Frontend Web App** | **Netlify** | [https://realtime-syncdocs.netlify.app](https://realtime-syncdocs.netlify.app) | Live |
-| **Backend API Server** | **Render** | [https://realtime-syncdocs.onrender.com](https://realtime-syncdocs.onrender.com) | Live |
-| **API Health Check** | **Render** | [https://realtime-syncdocs.onrender.com/health](https://realtime-syncdocs.onrender.com/health) | `{"status":"ok"}` |
+| **Frontend Web App** | **Netlify** | [https://realtime-syncdocs.netlify.app](https://realtime-syncdocs.netlify.app) | `Active` |
+| **Backend API & WebSockets** | **Render** | [https://realtime-syncdocs.onrender.com](https://realtime-syncdocs.onrender.com) | `Active` |
+| **API Health Probe** | **Render** | [https://realtime-syncdocs.onrender.com/health](https://realtime-syncdocs.onrender.com/health) | `{"status":"ok"}` |
 
-### ⚡ Quick Demo Access (No Sign-Up Required)
-You can test the application immediately using the pre-seeded demo account:
-* **Email:** `demo@collabdocs.com`
-* **Password:** `password123`
+### ⚡ Quick Demo Account (Instant Access, No Sign-Up Needed)
+Test real-time collaboration right away using our pre-seeded demo user:
+- **Email:** `demo@collabdocs.com`
+- **Password:** `password123`
 
-*(Or click "Register" to create your own account with a custom avatar).*
-
----
-
-## 🔒 Security & Privacy
-
-* **Authentication & Encryption**: Passwords are encrypted using salted `bcryptjs` hashing. Sessions are maintained via secure, signed JSON Web Tokens (JWT).
-* **Dual Database Architecture**: Features full MongoDB Atlas support alongside an automatic zero-config in-memory fallback. If MongoDB is offline, the app continues functioning seamlessly without data loss during user sessions.
-* **Granular Role-Based Access Control (RBAC)**: Enforces Owner, Editor, and Viewer permissions on both client and server layers.
-* **Safe Client Bundles**: Zero API keys or secrets are packaged in client-side production JavaScript. `VITE_API_URL` points strictly to the public backend gateway.
-* **CORS Protection**: Socket.IO and Express HTTP endpoints validate origin headers to prevent unauthorized cross-site requests.
+> 💡 **Try Real-Time Collaboration**: Open the app in two separate browser windows (or an Incognito tab), log in, and open the same document to watch edits, user avatars, and live typing indicators sync instantly!
 
 ---
 
-## Table of Contents
-1. [Tech Stack](#tech-stack)
-2. [Key Features](#key-features)
-3. [Folder Structure](#folder-structure)
-4. [Database Schema](#database-schema)
-5. [API Documentation](#api-documentation)
-6. [Socket.IO Real-Time Events](#socketio-real-time-events)
-7. [Installation & Local Setup](#installation--local-setup)
-8. [Deployment Architecture](#deployment-architecture)
+## ⚡ Core Features
+
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│                          COLLABDOCS PLATFORM                           │
+├───────────────────┬───────────────────┬────────────────────────────────┤
+│ 🚀 REAL-TIME SYNC │ 🛡️ PERMISSIONS   │ ⏱️ VERSION TIMELINES           │
+│ • Sub-ms latency  │ • Owner           │ • Automatic snapshot history   │
+│ • Socket.IO rooms │ • Editor (read/w) │ • Instant rollback restore     │
+│ • Typing bubbles  │ • Viewer (read)   │ • Author attribution           │
+├───────────────────┼───────────────────┼────────────────────────────────┤
+│ ✍️ RICH MARKDOWN  │ 🎨 USER IDENTITY  │ 🔌 HIGH AVAILABILITY           │
+│ • Split-view mode │ • Dynamic Avatars │ • MongoDB Atlas Cloud          │
+│ • Live HTML parse │ • Dark / Light UI │ • Zero-config in-memory backup │
+│ • Quick toolbars  │ • JWT sessions    │ • Resilient offline fallback   │
+└───────────────────┴───────────────────┴────────────────────────────────┘
+```
+
+- **⚡ Sub-Millisecond WebSocket Sync**: Changes propagate instantly to active collaborators inside the document room.
+- **👀 Live Presence & Typing Radar**: See active avatars in the header and visual indicators when teammates are typing.
+- **📑 Markdown Workspace**: Edit Markdown with formatting shortcuts (bold, headers, code, lists) and preview formatted HTML in real-time.
+- **🔒 Granular Access Control (RBAC)**: Share documents by email with designated roles:
+  - **Owner**: Full control (edit, rename, share, transfer, delete).
+  - **Editor**: Can read and write content.
+  - **Viewer**: Read-only access with interface controls locked.
+- **🕒 Version History & Snapshot Rollback**: Automatically captures versions as you work, allowing 1-click restore to any past revision.
+- **🛡️ Dual Database Resilience**: Connects to **MongoDB Atlas**, with an automated, zero-config in-memory JSON fallback if the cloud database is ever disconnected.
 
 ---
 
-## Tech Stack
+## 🏗️ Architecture & Data Flow
 
-### Frontend
-- **React 19 (Vite)**: Lightning-fast Single-Page Application (SPA) development and optimized bundling.
-- **Tailwind CSS**: Modern responsive utility styling.
-- **Lucide Icons**: Clean, consistent icon set.
-- **React Router DOM**: Client-side protected and authenticated routing.
-- **Axios**: Configured HTTP client with automatic JWT token interceptor.
-- **Socket.IO Client**: Persistent full-duplex WebSocket connections for sub-millisecond collaboration.
-- **React Markdown**: Real-time Markdown parser and live document preview.
-- **React Hot Toast**: Real-time user feedback and collaborator alerts.
-
-### Backend
-- **Node.js & Express.js**: RESTful API engine.
-- **Socket.IO**: Real-time room mappings, broadcast distribution, and active user presence tracking.
-- **MongoDB & Mongoose**: Flexible document and version history persistence.
-- **In-Memory / JSON DB Engine**: Zero-dependency fallback database system.
-- **JWT & bcryptjs**: Stateless token authentication and password hashing.
-- **CORS & Dotenv**: Environment parameter management and strict domain origin validation.
-
----
-
-## Key Features
-
-- **Real-Time Collaboration**: Sub-millisecond synchronised typing across multiple browser tabs and users with Socket.IO rooms.
-- **Collaborator Presence & Typing Indicators**: See who is currently viewing the document and get visual indicators when someone is typing.
-- **Interactive Markdown Editor**: Split-screen side-by-side editing, tabbed previewing, syntax formatting shortcuts, and live HTML rendering.
-- **Document Management**: Dashboard with search, category filtering, title renaming, and deletion.
-- **Granular Permissions & Sharing**: Invite users via email with specific roles (`Editor` or `Viewer`). Viewers are locked into read-only mode in real-time.
-- **Version History & Rollback**: Automatic version snapshots recorded as documents are edited, with one-click restore to any past version.
-- **Theme Support**: Persistent Light and Dark modes.
+```text
+  [ User A (Browser) ]                     [ User B (Browser) ]
+           │                                        ▲
+           │ 1. Type change via WebSocket           │ 3. Broadcast changes
+           ▼                                        │
+┌───────────────────────────────────────────────────────────┐
+│               Render Node.js & Socket.IO Server           │
+│              (https://realtime-syncdocs.onrender.com)     │
+└──────────────┬────────────────────────────┬───────────────┘
+               │ 2. Auto-save delta         │
+               ▼                            ▼
+      ┌─────────────────┐          ┌──────────────────────┐
+      │  MongoDB Atlas  │ (OR)     │ In-Memory Fallback   │
+      │  Cloud Cluster  │          │ JSON Store Engine    │
+      └─────────────────┘          └──────────────────────┘
+```
 
 ---
 
-## Folder Structure
+## 🔒 Security & Privacy by Design
+
+* **Credential Hashing**: Passwords are encrypted using salted `bcryptjs` (cost factor 10) before storage.
+* **Stateless JWT Sessions**: Requests to protected routes require a cryptographically signed JSON Web Token passed via `Authorization: Bearer <token>`.
+* **Clean Client Bundles**: Zero API keys or secrets are packaged into the client-side JavaScript bundle. The only client variable is the public API base address (`VITE_API_URL`).
+* **Cross-Origin Protection (CORS)**: Restricts and validates all HTTP and WebSocket connections against authorized origins.
+* **Repository Safety**: All local environment secrets (`.env`), cache files, and private databases are strictly excluded from version control via `.gitignore`.
+
+---
+
+## 📂 Project Organization
 
 ```text
 Real-Time Collaborative Document Editor/
-├── client/                     # Frontend Application (React + Vite)
+├── client/                     # Frontend Application (React 19 + Vite)
 │   ├── public/
-│   │   └── _redirects          # Netlify SPA routing fallback
+│   │   └── _redirects          # Netlify SPA routing rules
 │   ├── src/
-│   │   ├── components/         # Shared UI (Navbar, Spinner, Modals)
-│   │   ├── context/            # AuthContext, ThemeContext providers
-│   │   ├── hooks/              # useSocket custom hook
+│   │   ├── components/         # Shared UI (Navbar, Modals, Spinners)
+│   │   ├── context/            # AuthContext & ThemeContext
+│   │   ├── hooks/              # useSocket WebSocket hook
 │   │   ├── pages/              # Login, Register, Dashboard, Editor
-│   │   ├── services/           # Axios API service
-│   │   ├── App.jsx             # React routing setup
-│   │   └── main.jsx            # Application entry point
-│   ├── vercel.json             # Vercel SPA routing configuration
-│   └── vite.config.js          # Vite build and proxy settings
-├── server/                     # Backend API & WebSocket Server
-│   ├── config/                 # MongoDB connection & InMemory fallback DB
-│   ├── controllers/            # Auth and Document business logic
-│   ├── middleware/             # JWT auth validation
-│   ├── models/                 # Mongoose schemas (User, Document, Version)
+│   │   ├── services/           # Axios HTTP client with JWT interceptor
+│   │   ├── App.jsx             # SPA Route Declarations
+│   │   └── main.jsx            # React 19 Entry
+│   ├── vercel.json             # Vercel SPA rewrites
+│   └── vite.config.js          # Vite build config
+├── server/                     # Backend API & WebSocket Engine
+│   ├── config/                 # MongoDB connector & InMemory DB fallback
+│   ├── controllers/            # Auth & Document business logic
+│   ├── middleware/             # JWT authentication gatekeeper
+│   ├── models/                 # Mongoose Data Schemas (User, Doc, Version)
 │   ├── routes/                 # Express API routes
-│   ├── socket/                 # Socket.IO connection and event handlers
-│   ├── server.js               # Server entry point
-│   └── package.json            # Backend dependencies
-├── render.yaml                 # Render cloud service deployment blueprint
-├── package.json                # Root workspace configuration
+│   ├── socket/                 # Socket.IO connection & event handlers
+│   ├── .env.example            # Environment variables template
+│   └── server.js               # Express & Socket.IO bootstrapper
+├── render.yaml                 # Infrastructure-as-code for Render cloud
+├── .gitignore                  # Production Git ignore filter
+├── package.json                # Workspace scripts
 └── README.md                   # Project documentation
 ```
 
 ---
 
-## Database Schema
-
-### User Schema
-```json
-{
-  "name": "String (required)",
-  "email": "String (required, unique)",
-  "password": "String (hashed with bcrypt)",
-  "avatar": "String (URI)",
-  "createdAt": "Date",
-  "updatedAt": "Date"
-}
-```
-
-### Document Schema
-```json
-{
-  "title": "String (default: 'Untitled Document')",
-  "content": "String (default: '')",
-  "category": "String (default: 'General')",
-  "owner": "ObjectId (ref: User)",
-  "collaborators": [
-    {
-      "userId": "ObjectId (ref: User)",
-      "role": "String (enum: ['editor', 'viewer'])"
-    }
-  ],
-  "createdAt": "Date",
-  "updatedAt": "Date"
-}
-```
-
-### Version Schema
-```json
-{
-  "documentId": "ObjectId (ref: Document)",
-  "content": "String",
-  "editedBy": "ObjectId (ref: User)",
-  "createdAt": "Date"
-}
-```
-
----
-
-## API Documentation
-
-### Authentication Routes (`/api/auth`)
-
-| Endpoint | Method | Access | Description |
-| :--- | :--- | :--- | :--- |
-| `/api/auth/register` | `POST` | Public | Create new user account |
-| `/api/auth/login` | `POST` | Public | Authenticate user and receive JWT token |
-| `/api/auth/me` | `GET` | Private | Retrieve logged-in user details |
-| `/api/auth/reset-password` | `POST` | Public | Reset account password |
-
-### Document Routes (`/api/documents`)
-
-| Endpoint | Method | Access | Description |
-| :--- | :--- | :--- | :--- |
-| `/api/documents` | `GET` | Private | Retrieve all accessible documents (owned + shared) |
-| `/api/documents` | `POST` | Private | Create a new document |
-| `/api/documents/:id` | `GET` | Private | Retrieve document details, content, and permissions |
-| `/api/documents/:id` | `PUT` | Private | Update document title, content, or category |
-| `/api/documents/:id` | `DELETE` | Private (Owner) | Delete document |
-| `/api/documents/share` | `POST` | Private (Owner) | Manage collaborators and roles |
-| `/api/documents/:id/history` | `GET` | Private | Fetch version snapshots |
-| `/api/documents/:id/rollback`| `POST` | Private (Editor) | Rollback content to a historical version |
-
----
-
-## Socket.IO Real-Time Events
-
-| Event Name | Direction | Payload | Description |
-| :--- | :--- | :--- | :--- |
-| `join-document` | Client ➔ Server | `{ documentId, user }` | Subscribes client to a document's real-time room |
-| `leave-document` | Client ➔ Server | `{ documentId, userId }` | Unsubscribes client from the room |
-| `user-online` | Server ➔ Room | `[ onlineUsers ]` | Broadcasts updated list of active users |
-| `user-offline` | Server ➔ Room | `[ onlineUsers ]` | Broadcasts user exit from the room |
-| `send-changes` | Client ➔ Server | `{ documentId, content, user }`| Transmits incremental edit changes |
-| `receive-changes`| Server ➔ Room | `{ content, user }` | Delivers real-time edits to other collaborators |
-| `typing` | Client ➔ Server | `{ documentId, user }` | Notifies collaborators that a user is typing |
-| `stop-typing` | Client ➔ Server | `{ documentId, user }` | Clears active typing bubble indicator |
-| `save-document` | Client ➔ Server | `{ documentId, content }` | Automatically saves document state |
-
----
-
-## Installation & Local Setup
+## 🚀 Local Development Setup
 
 ### Prerequisites
-* Node.js v18 or later
-* npm (bundled with Node.js)
-* Optional: MongoDB local instance or MongoDB Atlas URI (if omitted, in-memory DB runs automatically)
+* **Node.js**: v18.0.0 or higher
+* **npm**: v9.0.0 or higher
+* Optional: Local MongoDB instance or MongoDB Atlas URI (runs automatically with in-memory fallback if omitted)
 
-### Step 1: Clone and Install
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/Naha2005/realtime-syncdocs.git
 cd realtime-syncdocs
+```
+
+### 2. Install Dependencies
+```bash
 npm install
 ```
 
-### Step 2: Configure Environment Variables
-Inside `server/.env`:
+### 3. Configure Environment Variables
+Copy the server environment template:
+```bash
+cp server/.env.example server/.env
+```
+*(On Windows PowerShell: `Copy-Item server/.env.example server/.env`)*
+
+Configure your `server/.env`:
 ```env
 PORT=5000
 NODE_ENV=development
@@ -224,30 +165,58 @@ CLIENT_URL=http://localhost:5173
 # Optional: MONGO_URI=mongodb://localhost:27017/collabdocs
 ```
 
-### Step 3: Run the Application
+### 4. Run Both Servers Concurrently
 ```bash
 npm run dev
 ```
-* **Frontend**: [http://localhost:5173](http://localhost:5173)
-* **Backend**: [http://localhost:5000](http://localhost:5000)
+
+* **Frontend Client:** [http://localhost:5173](http://localhost:5173)
+* **Backend API & WebSockets:** [http://localhost:5000](http://localhost:5000)
 
 ---
 
-## Deployment Architecture
+## 📡 REST API Reference
 
-```text
-[ Client (Browser) ]
-       │
-       ├─── Static Assets (HTML/CSS/JS) ───► Netlify CDN (https://realtime-syncdocs.netlify.app)
-       │
-       ├─── REST API Requests (/api/*) ────► Render Node.js Server (https://realtime-syncdocs.onrender.com)
-       │
-       └─── WebSocket Connections ─────────► Render Socket.IO Server (Persistent 24/7)
-                                                      │
-                                                      ├──► MongoDB Atlas (Cloud Database)
-                                                      └──► Fallback InMemory DB (Local State)
-```
+### Authentication (`/api/auth`)
 
-### Why this setup?
-* **Netlify**: Ultra-fast global CDN for static React assets, automated HTTPS, and continuous git deployments.
-* **Render**: Persistent Node.js container required to keep real-time **Socket.IO (WebSocket)** connections open 24/7, which serverless platforms (like standard Vercel/Netlify functions) cannot maintain.
+| Method | Endpoint | Access | Description |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/auth/register` | Public | Create a new user with custom avatar |
+| `POST` | `/api/auth/login` | Public | Sign in and receive JWT token |
+| `GET` | `/api/auth/me` | Private | Fetch authenticated user profile |
+| `POST` | `/api/auth/reset-password` | Public | Reset user password |
+
+### Document Management (`/api/documents`)
+
+| Method | Endpoint | Access | Description |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/documents` | Private | List all accessible documents (owned & shared) |
+| `POST` | `/api/documents` | Private | Create a new document |
+| `GET` | `/api/documents/:id` | Private | Fetch document details & user role |
+| `PUT` | `/api/documents/:id` | Private | Update document title, content, or category |
+| `DELETE` | `/api/documents/:id` | Owner | Delete document |
+| `POST` | `/api/documents/share` | Owner | Add, update, or remove collaborator permissions |
+| `GET` | `/api/documents/:id/history` | Private | Retrieve version snapshots |
+| `POST` | `/api/documents/:id/rollback`| Editor | Rollback content to a selected historical version |
+
+---
+
+## 🔌 Socket.IO Event Reference
+
+| Event Name | Direction | Payload | Description |
+| :--- | :--- | :--- | :--- |
+| `join-document` | Client ➔ Server | `{ documentId, user }` | Joins the document's real-time room channel |
+| `leave-document`| Client ➔ Server | `{ documentId, userId }` | Gracefully leaves the room channel |
+| `user-online` | Server ➔ Room | `[ onlineUsers ]` | Broadcasts active collaborator list |
+| `user-offline` | Server ➔ Room | `[ onlineUsers ]` | Broadcasts collaborator departure |
+| `send-changes` | Client ➔ Server | `{ documentId, content, user }`| Sends delta updates to server |
+| `receive-changes`| Server ➔ Room | `{ content, user }` | Dispatches edits to other active collaborators |
+| `typing` | Client ➔ Server | `{ documentId, user }` | Broadcasts active typing indicator |
+| `stop-typing` | Client ➔ Server | `{ documentId, user }` | Clears active typing indicator |
+| `save-document` | Client ➔ Server | `{ documentId, content }` | Triggers background document save |
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**. Feel free to use, modify, and distribute for personal or commercial projects.
