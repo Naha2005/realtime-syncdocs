@@ -21,20 +21,37 @@ loadDb();
 const app = express();
 const server = http.createServer(app);
 
+// Dynamic CORS configuration to support localhost, Vercel, Netlify & custom domains
+const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:5173')
+  .split(',')
+  .map((url) => url.trim().replace(/\/$/, ''));
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    const cleanOrigin = origin.replace(/\/$/, '');
+    if (
+      allowedOrigins.includes('*') ||
+      allowedOrigins.includes(cleanOrigin) ||
+      cleanOrigin.startsWith('http://localhost:') ||
+      cleanOrigin.endsWith('.vercel.app') ||
+      cleanOrigin.endsWith('.netlify.app')
+    ) {
+      return callback(null, true);
+    }
+    return callback(null, true);
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+};
+
 // Configure Socket.IO
 const io = new Server(server, {
-  cors: {
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true,
-  },
+  cors: corsOptions,
 });
 
 // Middlewares
-app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
-  credentials: true,
-}));
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // API Routes
